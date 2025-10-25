@@ -11,6 +11,8 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
+    overflow: hidden; /* Nasconde le scrollbar causate dai fiocchi */
+    position: relative; /* Necessario per posizionare i fiocchi */
     
     /* Questo crea il background animato e colorato! */
     background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
@@ -25,24 +27,82 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* L'effetto "vetro smerigliato" */
-.container {
-    background: rgba(0, 0, 0, 0.2);
-    padding: 40px 60px;
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    max-width: 90%;
+/* --- Nuovi Stili per Fiocchi di Neve --- */
+.snowflakes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Non blocca interazioni */
+    z-index: 0; /* Dietro il contenuto principale */
 }
 
-/* Titolo "Cinematico" */
+.snowflake {
+    color: #FFF;
+    font-size: 1.2em;
+    font-family: Arial, sans-serif;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: -10%;
+    opacity: 0;
+    animation: snow 10s linear infinite;
+}
+
+/* Animazione di caduta */
+@keyframes snow {
+    0% {
+        opacity: 0;
+        transform: translateY(0) translateX(0) rotate(0deg);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(50vh) translateX(10px) rotate(180deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(100vh) translateX(-10px) rotate(360deg);
+    }
+}
+
+/* Posizioni e ritardi diversi per i fiocchi */
+.snowflake:nth-of-type(1)  { left: 10%; animation-duration: 12s; animation-delay: 0s; }
+.snowflake:nth-of-type(2)  { left: 20%; animation-duration: 10s; animation-delay: 1s; font-size: 0.8em; }
+.snowflake:nth-of-type(3)  { left: 30%; animation-duration: 15s; animation-delay: 2s; }
+.snowflake:nth-of-type(4)  { left: 40%; animation-duration: 11s; animation-delay: 3s; font-size: 0.9em; }
+.snowflake:nth-of-type(5)  { left: 50%; animation-duration: 13s; animation-delay: 0s; }
+.snowflake:nth-of-type(6)  { left: 60%; animation-duration: 10s; animation-delay: 2s; font-size: 0.8em; }
+.snowflake:nth-of-type(7)  { left: 70%; animation-duration: 14s; animation-delay: 3s; }
+.snowflake:nth-of-type(8)  { left: 80%; animation-duration: 11s; animation-delay: 1s; font-size: 0.9em; }
+.snowflake:nth-of-type(9)  { left: 90%; animation-duration: 12s; animation-delay: 0s; }
+.snowflake:nth-of-type(10) { left: 25%; animation-duration: 10s; animation-delay: 3s; font-size: 0.8em; }
+.snowflake:nth-of-type(11) { left: 65%; animation-duration: 14s; animation-delay: 1s; }
+.snowflake:nth-of-type(12) { left: 85%; animation-duration: 11s; animation-delay: 2s; font-size: 0.9em; }
+
+/* --- Fine Stili Fiocchi di Neve --- */
+
+
+/* L'effetto "vetro smerigliato" */
+.container {
+    background: rgba(0, 0, 0, 0.25);
+    padding: 40px 60px;
+    border-radius: 20px;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.4);
+    max-width: 90%;
+    z-index: 1; /* Assicura che il container sia sopra i fiocchi */
+    position: relative; /* Necessario per z-index */
+}
+
+/* Titolo "Cinematico" in Oro */
 h1 {
     font-family: 'Cinzel', serif;
     font-size: 3.5rem;
     font-weight: 700;
     margin-bottom: 30px;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    color: #FFD700; /* Oro scintillante */
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7), 0 0 15px rgba(255, 255, 0, 0.5);
     line-height: 1.2;
 }
 
@@ -58,11 +118,12 @@ h1 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.15);
     padding: 20px;
     border-radius: 10px;
     min-width: 100px;
     min-height: 100px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* I numeri del countdown */
@@ -83,7 +144,7 @@ h1 {
 .reveal-message h2 {
     font-family: 'Cinzel', serif;
     font-size: 3rem;
-    color: #ffd700; /* Oro! */
+    color: #FFD700; /* Oro! */
     text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
 }
 
