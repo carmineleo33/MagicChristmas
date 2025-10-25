@@ -11,10 +11,10 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    overflow: hidden; /* Nasconde le scrollbar causate dai fiocchi */
-    position: relative; /* Necessario per posizionare i fiocchi */
+    overflow: hidden; /* Nasconde le scrollbar */
+    position: relative; /* Necessario per posizionare i fiocchi e Babbo Natale */
     
-    /* Questo crea il background animato e colorato! */
+    /* Background animato */
     background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
@@ -27,72 +27,114 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* --- Nuovi Stili per Fiocchi di Neve --- */
+/* --- Stili per Fiocchi di Neve --- */
 .snowflakes {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none; /* Non blocca interazioni */
-    z-index: 0; /* Dietro il contenuto principale */
+    pointer-events: none;
+    z-index: 2; /* Sopra Babbo Natale ma sotto il testo */
 }
 
 .snowflake {
     color: #FFF;
-    font-size: 1.2em;
+    font-size: 1em;
     font-family: Arial, sans-serif;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 0 5px #000;
     position: absolute;
     top: -10%;
+    animation: snow linear infinite;
     opacity: 0;
-    animation: snow 10s linear infinite;
 }
 
-/* Animazione di caduta */
 @keyframes snow {
-    0% {
-        opacity: 0;
-        transform: translateY(0) translateX(0) rotate(0deg);
-    }
-    50% {
-        opacity: 1;
-        transform: translateY(50vh) translateX(10px) rotate(180deg);
-    }
-    100% {
-        opacity: 0;
-        transform: translateY(100vh) translateX(-10px) rotate(360deg);
-    }
+    0% { transform: translate3d(var(--x-start, 0px), 0, 0); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translate3d(var(--x-end, 0px), 105vh, 0); opacity: 0; }
 }
 
-/* Posizioni e ritardi diversi per i fiocchi */
-.snowflake:nth-of-type(1)  { left: 10%; animation-duration: 12s; animation-delay: 0s; }
-.snowflake:nth-of-type(2)  { left: 20%; animation-duration: 10s; animation-delay: 1s; font-size: 0.8em; }
-.snowflake:nth-of-type(3)  { left: 30%; animation-duration: 15s; animation-delay: 2s; }
-.snowflake:nth-of-type(4)  { left: 40%; animation-duration: 11s; animation-delay: 3s; font-size: 0.9em; }
-.snowflake:nth-of-type(5)  { left: 50%; animation-duration: 13s; animation-delay: 0s; }
-.snowflake:nth-of-type(6)  { left: 60%; animation-duration: 10s; animation-delay: 2s; font-size: 0.8em; }
-.snowflake:nth-of-type(7)  { left: 70%; animation-duration: 14s; animation-delay: 3s; }
-.snowflake:nth-of-type(8)  { left: 80%; animation-duration: 11s; animation-delay: 1s; font-size: 0.9em; }
-.snowflake:nth-of-type(9)  { left: 90%; animation-duration: 12s; animation-delay: 0s; }
-.snowflake:nth-of-type(10) { left: 25%; animation-duration: 10s; animation-delay: 3s; font-size: 0.8em; }
-.snowflake:nth-of-type(11) { left: 65%; animation-duration: 14s; animation-delay: 1s; }
-.snowflake:nth-of-type(12) { left: 85%; animation-duration: 11s; animation-delay: 2s; font-size: 0.9em; }
-
+/* Animazioni individuali per i fiocchi */
+.snowflake:nth-child(1) { animation-delay: 0s; animation-duration: 12s; left: 10%; --x-start: 0px; --x-end: 15px; }
+.snowflake:nth-child(2) { animation-delay: 1s; animation-duration: 10s; left: 20%; --x-start: -10px; --x-end: -20px; font-size: 0.8em; }
+.snowflake:nth-child(3) { animation-delay: 2s; animation-duration: 15s; left: 30%; --x-start: 10px; --x-end: 25px; }
+.snowflake:nth-child(4) { animation-delay: 3s; animation-duration: 11s; left: 40%; --x-start: -15px; --x-end: -25px; font-size: 0.9em; }
+.snowflake:nth-child(5) { animation-delay: 4s; animation-duration: 13s; left: 50%; --x-start: 5px; --x-end: 15px; }
+.snowflake:nth-child(6) { animation-delay: 5s; animation-duration: 10s; left: 60%; --x-start: -5px; --x-end: -15px; font-size: 0.8em; }
+.snowflake:nth-child(7) { animation-delay: 6s; animation-duration: 14s; left: 70%; --x-start: 10px; --x-end: 20px; }
+.snowflake:nth-child(8) { animation-delay: 7s; animation-duration: 11s; left: 80%; --x-start: -10px; --x-end: -20px; font-size: 0.9em; }
+.snowflake:nth-child(9) { animation-delay: 8s; animation-duration: 12s; left: 90%; --x-start: 5px; --x-end: 15px; }
+.snowflake:nth-child(10) { animation-delay: 9s; animation-duration: 10s; left: 15%; --x-start: -10px; --x-end: -20px; font-size: 0.8em; }
+.snowflake:nth-child(11) { animation-delay: 10s; animation-duration: 14s; left: 55%; --x-start: 10px; --x-end: 20px; }
+.snowflake:nth-child(12) { animation-delay: 11s; animation-duration: 11s; left: 75%; --x-start: -10px; --x-end: -20px; font-size: 0.9em; }
 /* --- Fine Stili Fiocchi di Neve --- */
 
 
-/* L'effetto "vetro smerigliato" */
+/* --- Stile per Babbo Natale --- */
+.santa-sleigh-container {
+    position: absolute;
+    top: 5vh; 
+    left: 50%;
+    transform: translateX(-50%);
+    
+    /* === PROVA A CAMBIARE QUESTO VALORE === */
+    width: 150px; /* Es: prova 200px, 120px, ecc. */
+    
+    z-index: 1; 
+    filter: drop-shadow(2px 4px 8px rgba(0,0,0,0.5));
+    animation: flyingSanta 8s ease-in-out infinite;
+}
+
+.santa-sleigh-img {
+    width: 100%; /* Fa sì che l'immagine si adatti al contenitore */
+    height: auto; /* Mantiene le proporzioni corrette */
+}
+
+/* Animazione fluttuante per Babbo Natale */
+@keyframes flyingSanta {
+    0% {
+        transform: translateX(-55%) translateY(0px); /* Parte da sinistra */
+    }
+    50% {
+        transform: translateX(-45%) translateY(10px); /* Va a destra e scende un po' */
+    }
+    100% {
+        transform: translateX(-55%) translateY(0px); /* Torna a sinistra */
+    }
+}
+/* --- Fine Stile Babbo Natale --- */
+
+
+/* Contenitore principale - TRASPARENTE */
 .container {
-    background: rgba(0, 0, 0, 0.25);
     padding: 40px 60px;
-    border-radius: 20px;
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.4);
+    padding-top: 100px; /* Aumentato per fare spazio a Babbo Natale */
     max-width: 90%;
-    z-index: 1; /* Assicura che il container sia sopra i fiocchi */
-    position: relative; /* Necessario per z-index */
+    z-index: 3; /* Sopra tutto */
+    position: relative;
+}
+
+/* Container per titolo e icone laterali */
+.title-with-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px; /* Spazio tra icone e testo */
+    margin-bottom: 30px;
+}
+
+/* Stile comune per tutte le icone SVG */
+.icon {
+    color: #FFD700; /* Oro */
+    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.7)); /* Ombra per leggibilità */
+}
+
+/* Icone stelle affianco al titolo */
+.title-star {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0; /* Impedisce alle icone di rimpicciolirsi */
 }
 
 /* Titolo "Cinematico" in Oro */
@@ -100,10 +142,11 @@ h1 {
     font-family: 'Cinzel', serif;
     font-size: 3.5rem;
     font-weight: 700;
-    margin-bottom: 30px;
-    color: #FFD700; /* Oro scintillante */
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7), 0 0 15px rgba(255, 255, 0, 0.5);
+    color: #FFD700; /* Oro */
+    /* Ombra più forte per leggibilità */
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7), 0 0 15px rgba(0, 0, 0, 0.5);
     line-height: 1.2;
+    margin: 0;
 }
 
 .countdown-container {
@@ -118,18 +161,15 @@ h1 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.15);
-    padding: 20px;
-    border-radius: 10px;
     min-width: 100px;
     min-height: 100px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* I numeri del countdown */
 .time-block span:first-child {
     font-size: 3rem;
     font-weight: bold;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
 }
 
 /* Le etichette "Giorni", "Ore", ecc. */
@@ -138,35 +178,83 @@ h1 {
     font-weight: 300;
     margin-top: 5px;
     text-transform: uppercase;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
 }
 
-/* Lo stile per il messaggio di Natale */
+/* Stile per il messaggio di Natale */
 .reveal-message h2 {
     font-family: 'Cinzel', serif;
     font-size: 3rem;
     color: #FFD700; /* Oro! */
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+    margin-top: 15px; /* Spazio sotto l'albero */
+    margin-bottom: 15px;
 }
 
 .reveal-message p {
     font-size: 1.5rem;
     font-weight: 400;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+    margin: 0;
 }
 
-/* Media query per schermi piccoli (telefoni) */
+/* Stile per l'icona dell'albero */
+.reveal-tree {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 15px; /* Spazio tra albero e titolo */
+    display: block; /* Per centrare meglio */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- OTTIMIZZAZIONE SMARTPHONE --- */
 @media (max-width: 600px) {
+    /* Babbo Natale più piccolo su mobile */
+    .santa-sleigh-container {
+        width: 100px;
+        top: 3vh;
+    }
+    
     .container {
-        padding: 20px 30px;
+        padding: 20px;
+        padding-top: 80px; /* Spazio per Babbo Natale mobile */
     }
+    
+    .title-with-icons {
+         gap: 10px; /* Spazio ridotto */
+         margin-bottom: 20px;
+    }
+    .title-star {
+        width: 18px;
+        height: 18px;
+    }
+    
     h1 {
-        font-size: 2.5rem;
+        font-size: 2.2rem; /* Titolo più piccolo */
     }
+    
+    .countdown-container {
+        gap: 15px; /* Blocchi più vicini */
+    }
+    
     .time-block {
-        min-width: 70px;
-        padding: 15px;
+        min-width: 65px; /* Box più piccoli */
+        min-height: 65px;
+        padding: 5px;
     }
     .time-block span:first-child {
-        font-size: 2rem;
+        font-size: 2rem; /* Numeri più piccoli */
+    }
+    .time-block .label {
+        font-size: 0.7rem; /* Etichette più piccole */
+        margin-top: 2px;
+    }
+    
+    .reveal-tree {
+        width: 36px;
+        height: 36px;
+        margin-bottom: 10px;
     }
     .reveal-message h2 {
         font-size: 2rem;
