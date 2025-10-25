@@ -24,9 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (distance < 0) {
             clearInterval(interval);
             // Nasconde il countdown
-            countdownElement.style.display = 'none';
+            if (countdownElement) countdownElement.style.display = 'none';
             // Mostra il messaggio di Natale!
-            revealElement.style.display = 'block';
+            if (revealElement) revealElement.style.display = 'block';
             return;
         }
 
