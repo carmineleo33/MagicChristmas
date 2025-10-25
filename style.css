@@ -1,0 +1,116 @@
+/* Importazione font da Google */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Lato:wght@300;400&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', sans-serif;
+    color: white;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+    /* Questo crea il background animato e colorato! */
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+}
+
+/* Animazione del gradiente */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* L'effetto "vetro smerigliato" */
+.container {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 40px 60px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    max-width: 90%;
+}
+
+/* Titolo "Cinematico" */
+h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    line-height: 1.2;
+}
+
+.countdown-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap; /* Per adattarsi a schermi piccoli */
+}
+
+.time-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    min-width: 100px;
+    min-height: 100px;
+}
+
+/* I numeri del countdown */
+.time-block span:first-child {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+/* Le etichette "Giorni", "Ore", ecc. */
+.time-block .label {
+    font-size: 1rem;
+    font-weight: 300;
+    margin-top: 5px;
+    text-transform: uppercase;
+}
+
+/* Lo stile per il messaggio di Natale */
+.reveal-message h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 3rem;
+    color: #ffd700; /* Oro! */
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.reveal-message p {
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+/* Media query per schermi piccoli (telefoni) */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px 30px;
+    }
+    h1 {
+        font-size: 2.5rem;
+    }
+    .time-block {
+        min-width: 70px;
+        padding: 15px;
+    }
+    .time-block span:first-child {
+        font-size: 2rem;
+    }
+    .reveal-message h2 {
+        font-size: 2rem;
+    }
+    .reveal-message p {
+        font-size: 1.2rem;
+    }
+}
